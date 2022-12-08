@@ -1,0 +1,228 @@
+/** Variables **/
+$green: #70a74b;
+$mustard: #fcd329;
+$red: #ed5243;
+$gray: #ececec;
+$darkGray: #9d9d9c;
+$lightBlack: #555555;
+
+
+/** Base **/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Gotham Pro', sans-serif;
+    color: $lightBlack;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    position: relative;
+    max-width: 440px;
+    margin-top: 5rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+#myChart {
+    max-height: 500px;
+}
+
+
+/** Chart **/
+.flag {
+    position: absolute;
+    top: 11%;
+}
+
+.figure {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart {
+    rotate: -90deg;
+}
+
+.pie {
+    fill: none;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-dasharray: 90 100;
+    stroke-dashoffset: -4.75;
+    stroke-width: contain;
+}
+
+.pie:not(.pie:nth-child(1)) {
+    animation-name: render;
+    animation-duration: 1.25s;
+}
+
+.pie:nth-child(1) {
+    stroke: $gray;
+}
+
+.pie:nth-child(2) {
+    stroke: $mustard;
+    stroke-dasharray: 39.1 100;
+}
+
+.pie:nth-child(3) {
+    stroke: $green;
+    stroke-dasharray: 32 100;
+    stroke-dashoffset: -39.1;
+}
+
+@keyframes render {
+    0% {
+        stroke-dasharray: 0 100;   
+    }
+}
+
+.caption {
+    position: absolute;
+    margin-top: 10px;
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+
+        > :first-child {
+            font-size: 2.75rem;
+            position: relative;
+
+            > :first-child {
+                position: relative;
+                font-size: 1.375rem;
+                font-weight: normal;
+
+                &::before {
+                    position: absolute;
+                    content: '%';
+                    top: -20px;
+                    left: 4px;
+                    font-size: 18px;
+                    color: $darkGray;
+                    rotate: 5deg;
+                }
+            }
+
+            > :last-child {
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        :nth-child(2) {
+            font-size: 1.5rem;
+            margin-bottom: .25rem;
+        }
+
+        > :last-child {
+            font-size: 1.125rem;
+            color: $mustard;
+        }
+    }
+
+    > :nth-child(2) {
+        margin-inline: auto;
+        font-size: .75rem;
+        text-align: center;
+        color: $darkGray;
+    }
+
+    > :last-child {
+        margin-top: .25rem;
+        font-size: 1.125rem;
+        color: $green;
+    }
+}
+
+.chart-line {
+    position: absolute;
+    top: 36%;
+    left: 10%;
+}
+
+/** Legend **/
+.list {
+    max-width: 250px;
+    margin-inline: auto;
+    font-size: 0.875rem;
+
+    .list-item {
+        display: grid;
+        grid-template-columns: 1fr 2.25rem max-content;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+
+        .stats-1 {
+            > :last-child {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                gap: .25rem;
+                font-size: .75rem;
+                color: $darkGray;
+
+                .person-icon {
+                    width: 11.5px;
+
+                    path {
+                        fill: $darkGray;
+                    }
+                }
+            }
+        }
+
+        .stats-2 {
+            display: flex;
+            align-items: center;
+            // gap: 2rem;
+            font-size: .75rem;
+            font-weight: normal;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: inset 0 0 0 1px $gray;
+
+            svg {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+
+                > :first-child {
+                    opacity: .5;
+                }
+            }
+
+            > div {
+                padding-inline: 1rem .35rem;
+            }
+        }
+    }
+}
